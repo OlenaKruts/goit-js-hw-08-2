@@ -17,23 +17,21 @@ function saveFeedbackForm(event) {
     email: emailField.value,
     message: messageField.value,
   };
-  localStorage.setItem('LOCAL_STORAGE_KEY', JSON.stringify(feedbackForm));
+  localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(feedbackForm));
 }
 
 if (localStorage.length !== 0) {
-  emailField.value = JSON.parse(
-    localStorage.getItem('LOCAL_STORAGE_KEY')
-  ).email;
+  emailField.value = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY)).email;
   messageField.value = JSON.parse(
-    localStorage.getItem('LOCAL_STORAGE_KEY')
+    localStorage.getItem(LOCAL_STORAGE_KEY)
   ).message;
 }
 
 inputForm.addEventListener('submit', sumbitFeedbackForm);
 function sumbitFeedbackForm(event) {
   event.preventDefault();
-  console.log(JSON.parse(localStorage.getItem('LOCAL_STORAGE_KEY')));
+  console.log(JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY)));
 
-  localStorage.removeItem('LOCAL_STORAGE_KEY');
+  localStorage.removeItem(LOCAL_STORAGE_KEY);
   event.currentTarget.reset();
 }
