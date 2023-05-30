@@ -1,14 +1,11 @@
 import throttle from 'lodash.throttle';
+import Notiflix from 'notiflix';
 
-//const inputEmail = document.querySelector('input');
-//const inputMessage = document.querySelector('textarea');
 const inputForm = document.querySelector('form');
 const submitForm = inputForm.querySelector('button');
 const LOCAL_STORAGE_KEY = 'feedback-form-state';
 const emailField = inputForm.elements.email;
 const messageField = inputForm.elements.message;
-
-//console.log(inputMessage);
 
 inputForm.addEventListener('input', throttle(saveFeedbackForm, 500));
 
@@ -30,8 +27,12 @@ if (localStorage.length !== 0) {
 inputForm.addEventListener('submit', sumbitFeedbackForm);
 function sumbitFeedbackForm(event) {
   event.preventDefault();
-  console.log(JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY)));
+  if (emailField.value === '' || messageField.value === '') {
+    Notiflix.Notify.failure('Please, fill all fields');
+  } else {
+    console.log(JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY)));
 
-  localStorage.removeItem(LOCAL_STORAGE_KEY);
-  event.currentTarget.reset();
+    localStorage.removeItem(LOCAL_STORAGE_KEY);
+    event.currentTarget.reset();
+  }
 }

@@ -1,13 +1,7 @@
-// Add imports above this line
-// Описаний в документації
 import SimpleLightbox from 'simplelightbox';
-// Додатковий імпорт стилів
 
 import 'simplelightbox/dist/simple-lightbox.min.css';
 import { galleryItems } from './gallery-items';
-// Change code below this line
-
-console.log(galleryItems);
 
 const galleryEl = document.querySelector('.gallery');
 
@@ -31,11 +25,6 @@ const insertGallery = cardGallery => {
 };
 
 insertGallery(renderGallery(galleryItems));
-galleryEl.addEventListener('click', onOriginalImg);
-
-function onOriginalImg(event) {
-  event.preventDefault();
-}
 
 const gallery = new SimpleLightbox('.gallery__link', {
   captionsData: 'alt',
